@@ -9,7 +9,7 @@ export const toDosReducer = (state = initialState, action: toDoAction): toDosSta
     case ToDosActionTypes.SET_TODOS:
       localStorage.setItem("todos", JSON.stringify(action.payload))
       return { todos: action.payload };
-    case ToDosActionTypes.CHECKOUT_TODOS:
+    case ToDosActionTypes.CHECK_TODOS:
       const checkedToDo = state.todos.map(todo => {
         if (todo.id === action.payload) {
           todo.completed = !todo.completed
@@ -49,13 +49,3 @@ export const toDosReducer = (state = initialState, action: toDoAction): toDosSta
       return state;
   }
 }
-
-/*export const setTodos = (payload: ITodos[]) => {
-  localStorage.setItem("todos", JSON.stringify(payload));
-  return ({ type: ToDosActionTypes.SET_TODOS, payload })
-};*/
-/*export const fetchToDos = () => ({ type: ToDosActionTypes.FETCH_TODOS });*/
-export const checoutToDos = (payload: number) => ({ type: ToDosActionTypes.CHECKOUT_TODOS, payload });
-export const deleteToDos = (payload: number) => ({ type: ToDosActionTypes.DELETE_TODOS, payload });
-export const createToDo = (payload: { id: number, title: string }) => ({ type: ToDosActionTypes.CREATE_TODO, payload });
-export const editToDo = (payload: { id: number, title: string }) => ({ type: ToDosActionTypes.EDIT_TODO, payload })

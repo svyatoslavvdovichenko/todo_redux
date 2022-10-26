@@ -1,19 +1,12 @@
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import { ListGroup } from "reactstrap";
-import OneToDo from "components/OneToDo/OneToDo";
-import { useDispatch } from "react-redux";
-/*import { fetchToDos } from "store/toDosReducer";*/
 import { useTypedSelector } from "hooks/useTypeSelector";
 import { ITodos } from "models/ITodos";
+import { OneToDo } from "components";
 
 const AllTodos: FC = () => {
-  const dispatch = useDispatch();
   const todos = useTypedSelector(state => state.toDosReducer.todos);
   const filter = useTypedSelector(state => state.visibilityReducer.filter);
-
-  useEffect(() => {
-    //dispatch(fetchToDos());
-  }, []);
 
   const getVisibleTodos = (todos: ITodos[], filter: string): ITodos[] => {
     switch (filter) {

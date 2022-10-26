@@ -1,18 +1,15 @@
+import { useActions } from "hooks";
 import { FC, useState } from "react";
-import { useDispatch } from "react-redux";
-import { Button, Container, Input, ListGroupItem } from "reactstrap";
-import { checoutToDos, deleteToDos, editToDo } from "store/toDosReducer";
-import AlertToDo from "components/AlertToDo/AlertToDo";
+import { Button, Container, Input, ListGroupItem} from "reactstrap";
+import { AlertToDo } from "components";
 import { IOneToDo } from "./IOneToDo";
 import { checkInputs } from "helpers/checkInput";
-import "./style.css"
 
 const OneToDo: FC<IOneToDo> = ({ userId, id, title, completed }) => {
   const [editId, setEditId] = useState<number | null>(null);
   const [newToDoText, setNewToDoText] = useState<string>(title);
-  const [visibleAlert, setVisibleAlert] = useState<boolean>(false);
-  const [textAlert, setTextAlert] = useState<string>("");
-  const dispatch = useDispatch();
+  
+  const { editToDo, setAlert, checkToDos, deleteToDos } = useActions();
   let timer: NodeJS.Timeout;
 
   const editOneTodo = (): void => {
@@ -20,16 +17,16 @@ const OneToDo: FC<IOneToDo> = ({ userId, id, title, completed }) => {
       showAlert("Text must not empty")
       return;
     }
-    dispatch(editToDo({ id, title: newToDoText }));
+    editToDo({ id, title: newToDoText });
     setEditId(null);
   }
 
-  const showAlert = (alertMessage: string) => {
-    setVisibleAlert(true);
-    setTextAlert(alertMessage);
+  const showAlert = (alertMessage: string) => {  
+    setAlert({ alert: alertMessage, isVisibleAlert: true })
+  
     setTimeout(() => {
-      setVisibleAlert(false)
-    }, 2000);
+      setAlert({ alert: "", isVisibleAlert: false })
+    }, 3000);
   }
 
   const editedTextToDo = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -39,7 +36,7 @@ const OneToDo: FC<IOneToDo> = ({ userId, id, title, completed }) => {
   const checkeckCheckbox = (): void => {
     clearTimeout(timer);
     timer = setTimeout(() => { 
-      dispatch(checoutToDos(id));
+      checkToDos(id);
     }, 200);
   }
 
@@ -55,9 +52,8 @@ const OneToDo: FC<IOneToDo> = ({ userId, id, title, completed }) => {
 
   const deleteToDo = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
     event.stopPropagation();
-    dispatch(deleteToDos(id));
+    deleteToDos(id);
   }
-  
 
   return (
     <>
@@ -91,11 +87,7 @@ const OneToDo: FC<IOneToDo> = ({ userId, id, title, completed }) => {
             </Button>
           </Container>
         </ListGroupItem>
-        <AlertToDo 
-          textAlert={textAlert}
-          setVisibleAlert={setVisibleAlert}
-          visibleAlert={visibleAlert} 
-        />
+        <AlertToDo />
       </>
     ) : (
       <ListGroupItem 

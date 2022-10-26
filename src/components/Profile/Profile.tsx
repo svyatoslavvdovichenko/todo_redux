@@ -1,15 +1,10 @@
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 
-const Profile: FC = () => {
-  useEffect(()=> {
-    document.title = "Profile";
-  }, []);
-  
-  return (
-    <>
-      Profile
-    </>
-  );
-}
+const Profile: FC = () => (
+  <>
+    Profile
+  </>
+);
+
 
 export default Profile;

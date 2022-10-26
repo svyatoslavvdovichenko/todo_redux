@@ -1,15 +1,16 @@
 import { FC, useState } from "react";
-import { useDispatch } from "react-redux";
 import { Button, ButtonGroup } from "reactstrap";
-import { setVisibilityFilter } from "store/filterRedux";
+import { typeFilter } from "types/filter";
+import { useActions } from "hooks";
 
 const Filter: FC = () => {
   const [selectedFilter, setSelectedFilter] = useState<number>(1);
-  const dispatch = useDispatch();
+
+  const { setVisibilityFilter } = useActions();
   
   const changeVisibility = (selected: number, typeFilter: string) => {
     setSelectedFilter(selected);
-    dispatch(setVisibilityFilter(typeFilter));
+    setVisibilityFilter(typeFilter);
   }
 
   return (
@@ -17,7 +18,7 @@ const Filter: FC = () => {
       <Button
         color="dark"
         outline
-        onClick={() => changeVisibility(1, "showAll")}
+        onClick={() => changeVisibility(1, typeFilter.showAll)}
         active={selectedFilter === 1}
       >
         All
@@ -25,7 +26,7 @@ const Filter: FC = () => {
       <Button
         color="dark"
         outline
-        onClick={() => changeVisibility(2, "showDone")}
+        onClick={() => changeVisibility(2, typeFilter.showDone)}
         active={selectedFilter === 2}
       >
         Done
@@ -33,7 +34,7 @@ const Filter: FC = () => {
       <Button
         color="dark"
         outline
-        onClick={() => changeVisibility(3, "showUnDone")}
+        onClick={() => changeVisibility(3, typeFilter.showUnDone)}
         active={selectedFilter === 3}
       >
         Undone

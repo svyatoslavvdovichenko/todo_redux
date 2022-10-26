@@ -1,15 +1,10 @@
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 
-const Home: FC = () => {
-  useEffect(()=> {
-    document.title = "Profile";
-  }, []);
-  
-  return (
-    <>
-      Home
-    </>
-  );
-}
+const Home: FC = () => (
+  <>
+    Home
+  </>
+);
+
 
 export default Home;
