@@ -6,9 +6,6 @@ const initialState: toDosState = {
 
 export const toDosReducer = (state = initialState, action: toDoAction): toDosState => {
   switch (action.type) {
-    case ToDosActionTypes.SET_TODOS:
-      localStorage.setItem("todos", JSON.stringify(action.payload))
-      return { todos: action.payload };
     case ToDosActionTypes.CHECKOUT_TODOS:
       const checkedToDo = state.todos.map(todo => {
         if (todo.id === action.payload) {
@@ -50,11 +47,6 @@ export const toDosReducer = (state = initialState, action: toDoAction): toDosSta
   }
 }
 
-/*export const setTodos = (payload: ITodos[]) => {
-  localStorage.setItem("todos", JSON.stringify(payload));
-  return ({ type: ToDosActionTypes.SET_TODOS, payload })
-};*/
-/*export const fetchToDos = () => ({ type: ToDosActionTypes.FETCH_TODOS });*/
 export const checoutToDos = (payload: number) => ({ type: ToDosActionTypes.CHECKOUT_TODOS, payload });
 export const deleteToDos = (payload: number) => ({ type: ToDosActionTypes.DELETE_TODOS, payload });
 export const createToDo = (payload: { id: number, title: string }) => ({ type: ToDosActionTypes.CREATE_TODO, payload });

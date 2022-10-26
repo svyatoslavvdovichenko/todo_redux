@@ -5,8 +5,6 @@ export interface toDosState {
 }
 
 export enum ToDosActionTypes {
-  SET_TODOS = "SET_TODOS",
-  FETCH_TODOS = "FETCH_TODOS",
   CHECKOUT_TODOS = "CHECKOUT_TODOS",
   DELETE_TODOS = "DELETE_TODOS",
   CREATE_TODO = "CREATE_TODO",
@@ -21,15 +19,6 @@ interface checoutToDoAction {
 interface deleteToDoAction {
   type: ToDosActionTypes.DELETE_TODOS;
   payload: number;
-}
-
-interface setToDoAction {
-  type: ToDosActionTypes.SET_TODOS;
-  payload: ITodos[]
-}
-
-interface fetchToDoAction {
-  type: ToDosActionTypes.FETCH_TODOS;
 }
 
 interface createToDoAction {
@@ -48,8 +37,7 @@ interface editToDoAction {
   }
 }
 
-export type toDoAction = setToDoAction 
-  | fetchToDoAction 
+export type toDoAction = 
   | checoutToDoAction
   | deleteToDoAction
   | createToDoAction
