@@ -14,19 +14,10 @@ const OneToDo: FC<IOneToDo> = ({ userId, id, title, completed }) => {
 
   const editOneTodo = (): void => {
     if (newToDoText.trim() === "") {
-      showAlert("Text must not empty")
       return;
     }
     editToDo({ id, title: newToDoText });
     setEditId(null);
-  }
-
-  const showAlert = (alertMessage: string) => {  
-    setAlert({ alert: alertMessage, isVisibleAlert: true })
-  
-    setTimeout(() => {
-      setAlert({ alert: "", isVisibleAlert: false })
-    }, 3000);
   }
 
   const editedTextToDo = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -57,65 +48,65 @@ const OneToDo: FC<IOneToDo> = ({ userId, id, title, completed }) => {
 
   return (
     <>
-    {editId ? (
-      <>
+      {editId ? (
+        <>
+          <ListGroupItem 
+            className="d-flex w-100"
+            id="DisabledAutoHide"
+          >
+            <Container className="d-flex flex-nowrap justify-content-between p-0">
+              <Input 
+                invalid={checkInputs(newToDoText)}
+                type="text"
+                value={newToDoText}
+                onChange={editedTextToDo}
+                className="w-65"
+              />
+              <Button 
+                color="success"
+                onClick={editOneTodo}
+                className="w-14"
+              >
+                Save
+              </Button>
+              <Button 
+                color="danger"
+                onClick={cancelEdit}
+                className="w-17"
+              >
+                Cancel
+              </Button>
+            </Container>
+          </ListGroupItem>
+          <AlertToDo />
+        </>
+      ) : (
         <ListGroupItem 
-          className="d-flex w-100"
-          id="DisabledAutoHide"
+          className="d-flex justify-content-between align-items-center"
+          color={completed? "danger" : ""}
+          onClick={checkeckCheckbox}
+          onDoubleClick={openEditTodo}
         >
-          <Container className="d-flex flex-nowrap justify-content-between p-0">
-            <Input 
-              invalid={checkInputs(newToDoText)}
-              type="text"
-              value={newToDoText}
-              onChange={editedTextToDo}
-              className="w-65"
-            />
-            <Button 
-              color="success"
-              onClick={editOneTodo}
-              className="w-14"
-            >
-              Save
-            </Button>
-            <Button 
-              color="danger"
-              onClick={cancelEdit}
-              className="w-17"
-            >
-              Cancel
-            </Button>
-          </Container>
+          <Input 
+            type="checkbox"
+            checked={completed}
+          />
+            {completed? 
+              (
+                <s>{title}</s>
+              ) : (
+                <span> 
+                  {title}
+                </span>
+              )}
+          <Button 
+            color="danger"
+            onClick={(event) => deleteToDo(event)}
+          >
+            Delete
+          </Button>
         </ListGroupItem>
-        <AlertToDo />
-      </>
-    ) : (
-      <ListGroupItem 
-        className="d-flex justify-content-between align-items-center"
-        color={completed? "danger" : ""}
-        onClick={checkeckCheckbox}
-        onDoubleClick={openEditTodo}
-      >
-        <Input 
-          type="checkbox"
-          checked={completed}
-        />
-          {completed? 
-            (
-              <s>{title}</s>
-            ) : (
-              <span> 
-                {title}
-              </span>
-            )}
-        <Button 
-          color="danger"
-          onClick={(event) => deleteToDo(event)}
-        >
-          Delete
-        </Button>
-      </ListGroupItem>
-    )}
+      )}
     </>
   );
 };
