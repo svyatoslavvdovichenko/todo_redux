@@ -1,9 +1,11 @@
 import { FC, useState } from "react";
 import { useDispatch } from "react-redux";
-import { Button, Input, ListGroupItem} from "reactstrap";
+import { Button, Container, Input, ListGroupItem } from "reactstrap";
 import { checoutToDos, deleteToDos, editToDo } from "store/toDosReducer";
 import AlertToDo from "components/AlertToDo/AlertToDo";
 import { IOneToDo } from "./IOneToDo";
+import { checkInputs } from "helpers/checkInput";
+import "./style.css"
 
 const OneToDo: FC<IOneToDo> = ({ userId, id, title, completed }) => {
   const [editId, setEditId] = useState<number | null>(null);
@@ -48,6 +50,7 @@ const OneToDo: FC<IOneToDo> = ({ userId, id, title, completed }) => {
 
   const cancelEdit = (): void => {
     setEditId(null);
+    setNewToDoText(title);
   }
 
   const deleteToDo = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
@@ -61,26 +64,32 @@ const OneToDo: FC<IOneToDo> = ({ userId, id, title, completed }) => {
     {editId ? (
       <>
         <ListGroupItem 
-          className="d-flex justify-content-between align-items-center"
+          className="d-flex w-100"
           id="DisabledAutoHide"
         >
-          <Input 
-            type="text"
-            value={newToDoText}
-            onChange={editedTextToDo}
-          />
-          <Button 
-            color="success"
-            onClick={editOneTodo}
-          >
-            Save
-          </Button>
-          <Button 
-            color="danger"
-            onClick={cancelEdit}
+          <Container className="d-flex flex-nowrap justify-content-between p-0">
+            <Input 
+              invalid={checkInputs(newToDoText)}
+              type="text"
+              value={newToDoText}
+              onChange={editedTextToDo}
+              className="w-65"
+            />
+            <Button 
+              color="success"
+              onClick={editOneTodo}
+              className="w-14"
             >
-            Cancel
-          </Button>
+              Save
+            </Button>
+            <Button 
+              color="danger"
+              onClick={cancelEdit}
+              className="w-17"
+            >
+              Cancel
+            </Button>
+          </Container>
         </ListGroupItem>
         <AlertToDo 
           textAlert={textAlert}

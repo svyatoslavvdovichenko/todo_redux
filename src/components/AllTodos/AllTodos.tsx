@@ -2,7 +2,7 @@ import { FC, useEffect } from "react";
 import { ListGroup } from "reactstrap";
 import OneToDo from "components/OneToDo/OneToDo";
 import { useDispatch } from "react-redux";
-import { fetchToDos } from "store/toDosReducer";
+/*import { fetchToDos } from "store/toDosReducer";*/
 import { useTypedSelector } from "hooks/useTypeSelector";
 import { ITodos } from "models/ITodos";
 
@@ -12,7 +12,7 @@ const AllTodos: FC = () => {
   const filter = useTypedSelector(state => state.visibilityReducer.filter);
 
   useEffect(() => {
-    dispatch(fetchToDos());
+    //dispatch(fetchToDos());
   }, []);
 
   const getVisibleTodos = (todos: ITodos[], filter: string): ITodos[] => {

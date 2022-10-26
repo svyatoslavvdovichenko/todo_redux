@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
 import Footer from 'components/Footer/Footer';
 import Header from 'components/Header/Header';
@@ -21,6 +21,7 @@ const App: FC = () => {
         <Route exact path="/profile">
           <Profile />
         </Route>
+        <Redirect from="*" to="home" />
       </Switch>
       <Footer />
     </>
