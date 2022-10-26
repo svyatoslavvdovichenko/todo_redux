@@ -7,14 +7,14 @@ export interface toDosState {
 export enum ToDosActionTypes {
   SET_TODOS = "SET_TODOS",
   FETCH_TODOS = "FETCH_TODOS",
-  CHECKOUT_TODOS = "CHECKOUT_TODOS",
+  CHECK_TODOS = "CHECK_TODOS",
   DELETE_TODOS = "DELETE_TODOS",
   CREATE_TODO = "CREATE_TODO",
   EDIT_TODO = "EDIT_TODO"
 }
 
-interface checoutToDoAction {
-  type: ToDosActionTypes.CHECKOUT_TODOS;
+interface checkToDoAction {
+  type: ToDosActionTypes.CHECK_TODOS;
   payload: number;
 }
 
@@ -50,7 +50,7 @@ interface editToDoAction {
 
 export type toDoAction = setToDoAction 
   | fetchToDoAction 
-  | checoutToDoAction
+  | checkToDoAction
   | deleteToDoAction
   | createToDoAction
   | editToDoAction;

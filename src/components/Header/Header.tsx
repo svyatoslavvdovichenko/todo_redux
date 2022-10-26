@@ -12,6 +12,7 @@ import { NavLink as Link } from "react-router-dom";
 
 const Navibar: FC = (props) => {
   const [isOpenNavbar, setIsOpenNavbar] = useState<boolean>(false);
+  
   const toggleNavbar = () => setIsOpenNavbar(!isOpenNavbar);
 
   return (

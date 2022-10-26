@@ -1,7 +1,7 @@
 import { ITodos } from 'models/ITodos';
 import axios, { AxiosResponse } from "axios";
 import { put, takeEvery, call } from "redux-saga/effects";
-import { setTodos } from "store/toDosReducer";
+import { setTodos } from "store/actions/toDoActions"
 import { ToDosActionTypes } from "types/todos";
 
 const fetchToDosFromApi = async (): Promise<ITodos[]> => await axios.get("https://jsonplaceholder.typicode.com/todos?_limit=1").then(response => response.data);
