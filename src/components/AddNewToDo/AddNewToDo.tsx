@@ -32,6 +32,19 @@ const AddNewToDo: FC = () => {
     setToDoText("");
   }
 
+  const enterOneTodo = (event: React.KeyboardEvent<HTMLInputElement>): void => {
+    if (event.key === "Enter") {
+      if (toDoText.trim() === "") {
+        showAlert("Text must not empty");
+        return;
+      }
+
+      event.preventDefault();
+      createToDo({ id: createRandomValue(todos), title: toDoText });
+      setToDoText("");
+    }
+  }
+
   const showAlert = (alertMessage: string) => { 
     setAlert({ alert: alertMessage, isVisibleAlert: true })
   
@@ -57,6 +70,7 @@ const AddNewToDo: FC = () => {
             className="mb-3"
             onChange={addTextTodo}
             value={toDoText}
+            onKeyDown={(event) => enterOneTodo(event)}
           />
 
           <Container className="d-flex justify-content-between">

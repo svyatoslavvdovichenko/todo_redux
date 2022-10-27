@@ -8,6 +8,8 @@ import Filter from "components/Filter/Filter";
 import OneToDo from "components/OneToDo/OneToDo";
 import AddNewToDo from "components/AddNewToDo/AddNewToDo";
 import AllTodos from "components/AllTodos/AllTodos";
+import InputUser from 'components/InputUser/InputUser';
+import UsersCard from './UsersCard/UsersCard';
 
 export {
   Footer,
@@ -19,5 +21,7 @@ export {
   Filter,
   OneToDo,
   AddNewToDo,
-  AllTodos
+  AllTodos,
+  InputUser,
+  UsersCard
 }
