@@ -21,7 +21,7 @@ const AddNewToDo: FC = () => {
     setToDoText(event.target.value);
   }
 
-  const addOneTodo = (event:React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
+  const addOneTodo = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
     if (toDoText.trim() === "") {
       showAlert("Text must not empty");
@@ -30,19 +30,6 @@ const AddNewToDo: FC = () => {
 
     createToDo({ id: createRandomValue(todos), title: toDoText });
     setToDoText("");
-  }
-
-  const enterOneTodo = (event: React.KeyboardEvent<HTMLInputElement>): void => {
-    if (event.key === "Enter") {
-      if (toDoText.trim() === "") {
-        showAlert("Text must not empty");
-        return;
-      }
-
-      event.preventDefault();
-      createToDo({ id: createRandomValue(todos), title: toDoText });
-      setToDoText("");
-    }
   }
 
   const showAlert = (alertMessage: string) => { 
@@ -55,7 +42,7 @@ const AddNewToDo: FC = () => {
 
   return (
     <Container className="mt-2">
-      <Form>
+      <Form onSubmit={addOneTodo}>
         <FormGroup>
           <Label for="todoAdd">
             ToDos
@@ -70,7 +57,6 @@ const AddNewToDo: FC = () => {
             className="mb-3"
             onChange={addTextTodo}
             value={toDoText}
-            onKeyDown={(event) => enterOneTodo(event)}
           />
 
           <Container className="d-flex justify-content-between">
@@ -78,7 +64,7 @@ const AddNewToDo: FC = () => {
               color="dark"
               size="sm"
               className="pl-1"
-              onClick={addOneTodo}
+              type="submit"
             >
               Add new todo
             </Button>
@@ -87,6 +73,7 @@ const AddNewToDo: FC = () => {
           </Container>
         </FormGroup>
       </Form>
+
       <AlertToDo />
     </Container>
   );

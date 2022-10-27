@@ -8,7 +8,7 @@ const InputUser: FC = () => {
   
   const { fetchUser, setAlert } = useActions();
 
-  const addUser = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
+  const addUser = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
     
     if (countUser.trim() === "") {
@@ -19,24 +19,6 @@ const InputUser: FC = () => {
 
     fetchUser(count);
     setCountUser("");
-  }
-
-  const enterUser = (event: React.KeyboardEvent<HTMLInputElement>): void => {
-    if (event.key === "Enter") {
-      console.log(countUser);
-      
-      if (countUser.trim() === "") {
-        showAlert("Text must not empty");
-        return;
-      }
-
-      event.preventDefault();  
-
-      const count = Number(countUser);
-
-      fetchUser(count);
-      setCountUser("");
-    }
   }
 
   const takeCountUser = (event: React.ChangeEvent<HTMLInputElement>) => {        
@@ -58,7 +40,7 @@ const InputUser: FC = () => {
 
   return (
     <Container className="mt-2">
-      <Form>
+      <Form onSubmit={addUser}>
         <FormGroup>
           <Label for="users">
             Enter count users
@@ -71,7 +53,6 @@ const InputUser: FC = () => {
             bsSize="sm"
             className="mb-3"
             value={countUser}
-            onKeyDown={enterUser}
             onChange={takeCountUser}
             invalid={checkInputs(countUser)}
           />
@@ -79,7 +60,7 @@ const InputUser: FC = () => {
           <Button
             color="dark"
             className="pl-1"
-            onClick={addUser}
+            type="submit"
           >
             Get users
           </Button>

@@ -10,22 +10,24 @@ const UsersCard: FC = () => {
   return (
     <Container className="d-flex pt-2 mb-2 justify-content-between flex-wrap">
       {users && users.map((user)=> (
-          <Card key={user.id} className="h-100 w-45 m-1">
-            <Card.Img 
-              variant="top" 
-              src={userNotFound}
-              alt="example"
-              className="w-25"
-            />
-            <Card.Body>
-              <Card.Title>
-                {user.name}
-              </Card.Title>
-              <Card.Text>
-                {user.username}
-              </Card.Text>
-            </Card.Body>
-          </Card>
+        <Card key={user.id} className="h-100 w-45 m-1">
+          <Card.Img 
+            variant="top" 
+            src={userNotFound}
+            alt="example"
+            className="w-25"
+          />
+
+          <Card.Body>
+            <Card.Title>
+              {user.name}
+            </Card.Title>
+            
+            <Card.Text>
+              {user.username}
+            </Card.Text>
+          </Card.Body>
+        </Card>
       ))}
   </Container>
   )
