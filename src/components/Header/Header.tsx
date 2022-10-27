@@ -24,7 +24,9 @@ const Navibar: FC = (props) => {
       expand="md"
     >
       <NavbarBrand>
-        ToDo redux example
+        <Link className="text-light text-decoration-none" to="home">
+          ToDo redux example     
+        </Link>
       </NavbarBrand>
       <NavbarToggler onClick={toggleNavbar} />
       <Collapse isOpen={isOpenNavbar} navbar>
