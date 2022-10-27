@@ -33,21 +33,21 @@ const Navibar: FC = (props) => {
         <Nav pills>
           <NavItem >
             <NavLink>
-              <Link activeClassName='active' className="text-light" to="home">
+              <Link className="text-light" to="home">
                 Home
               </Link>
             </NavLink>
           </NavItem>
           <NavItem>
             <NavLink>
-              <Link activeClassName='active' className="text-light" to="todo">
+              <Link className="text-light" to="todo">
                 my ToDos
               </Link>
             </NavLink>
           </NavItem>
           <NavItem>
             <NavLink>
-              <Link activeClassName='active' className="text-light" to="profile">
+              <Link className="text-light" to="profile">
                 my profile
               </Link>
             </NavLink>

@@ -11,25 +11,26 @@ import {
 } from 'components';
 
 
-const App: FC = () => {
-  return (
-    <>
-      <Header />
-      <Switch>
-        <Route exact path="/home">
-          <Home />
-        </Route>
-        <Route exact path="/todo">
-          <ToDoMain />
-        </Route>
-        <Route exact path="/profile">
-          <Profile />
-        </Route>
-        <Redirect from="*" to="home" />
-      </Switch>
-      <Footer />
-    </>
-  );
-}
+const App: FC = () => (
+  <>
+    <Header />
+    <Switch>
+      <Route exact path="/home">
+        <Home />
+      </Route>
+
+      <Route exact path="/todo">
+        <ToDoMain />
+      </Route>
+
+      <Route exact path="/profile">
+        <Profile />
+      </Route>
+      
+      <Redirect from="*" to="home" />
+    </Switch>
+    <Footer />
+  </>
+);
 
 export default App;

@@ -91,8 +91,7 @@ const OneToDo: FC<IOneToDo> = ({ userId, id, title, completed }) => {
             type="checkbox"
             checked={completed}
           />
-            {completed? 
-              (
+            {completed ? (
                 <s>{title}</s>
               ) : (
                 <span> 

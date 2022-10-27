@@ -1,13 +1,20 @@
 import { FC } from "react";
+import { Helmet } from "react-helmet";
 import { Container } from "reactstrap";
 import { AddNewToDo, AllTodos } from "components";
 
 const ToDoMain: FC = () => (
-  <Container className="content">
-    <AddNewToDo />
+  <>
+    <Helmet>
+        <title>Todos</title>
+    </Helmet>
     
-    <AllTodos />
-  </Container>
+    <Container className="content">
+      <AddNewToDo />
+      
+      <AllTodos />
+    </Container>
+  </>
 )
 
 
