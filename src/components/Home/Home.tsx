@@ -1,12 +1,12 @@
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
+import { Helmet } from 'react-helmet';
 import { Container, Form, FormGroup, Label, Input, Button } from 'reactstrap';
 
-const Home: FC = () => {
-  useEffect(()=> {
-    document.title = "Home";
-  }, []);
-  
-  return (
+const Home: FC = () => (
+  <>
+    <Helmet>
+      <title>Home</title>
+    </Helmet>
     <Container className="mt-2">
       <Form>
         <FormGroup>
@@ -32,7 +32,8 @@ const Home: FC = () => {
         </FormGroup>
       </Form>
     </Container>
-  );
-}
+  </>
+);
+
 
 export default Home;

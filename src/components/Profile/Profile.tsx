@@ -1,15 +1,15 @@
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
+import { Helmet } from "react-helmet";
 
-const Profile: FC = () => {
-  useEffect(()=> {
-    document.title = "Profile";
-  }, []);
-  
-  return (
-    <>
-      Profile
-    </>
-  );
-}
+const Profile: FC = () => (
+  <>
+    <Helmet>
+      <title>Profile</title>
+    </Helmet>
+    
+    Profile
+  </>
+);
+
 
 export default Profile;

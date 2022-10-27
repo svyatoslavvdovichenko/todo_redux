@@ -1,19 +1,21 @@
-import { FC, useEffect } from "react";
+import { FC } from "react";
+import { Helmet } from "react-helmet";
 import { Container } from "reactstrap";
-import AddNewToDo from "components/AddNewToDo/AddNewToDo";
-import AllTodos from "components/AllTodos/AllTodos";
+import { AddNewToDo, AllTodos } from "components";
 
-const ToDoMain: FC = () => {
-  useEffect(()=> {
-    document.title = "ToDo list";
-  }, []);
-
-  return (
+const ToDoMain: FC = () => (
+  <>
+    <Helmet>
+        <title>Todos</title>
+    </Helmet>
+    
     <Container className="content">
       <AddNewToDo />
+      
       <AllTodos />
     </Container>
-  )
-}
+  </>
+)
+
 
 export default ToDoMain;

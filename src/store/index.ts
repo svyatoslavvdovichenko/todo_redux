@@ -1,18 +1,10 @@
-import { applyMiddleware, combineReducers, createStore } from "redux";
+import { applyMiddleware, createStore } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import createSagaMiddleware from "redux-saga";
 import { rootWatcher } from 'saga';
-import { visibilityReducer } from './filterRedux';
-import { toDosReducer } from './toDosReducer';
-import { userReducer } from "./userReducer";
+import { rootReducer } from "./reducers";
 
 const sagaMiddleware = createSagaMiddleware()
-
-const rootReducer = combineReducers({
-  toDosReducer,
-  visibilityReducer,
-  userReducer
-})
 
 export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(sagaMiddleware)));
 

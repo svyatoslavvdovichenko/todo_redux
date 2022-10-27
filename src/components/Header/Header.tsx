@@ -12,6 +12,7 @@ import { NavLink as Link } from "react-router-dom";
 
 const Navibar: FC = (props) => {
   const [isOpenNavbar, setIsOpenNavbar] = useState<boolean>(false);
+  
   const toggleNavbar = () => setIsOpenNavbar(!isOpenNavbar);
 
   return (
@@ -23,28 +24,30 @@ const Navibar: FC = (props) => {
       expand="md"
     >
       <NavbarBrand>
-        ToDo redux example
+        <Link className="text-light text-decoration-none" to="home">
+          ToDo redux example     
+        </Link>
       </NavbarBrand>
       <NavbarToggler onClick={toggleNavbar} />
       <Collapse isOpen={isOpenNavbar} navbar>
         <Nav pills>
           <NavItem >
             <NavLink>
-              <Link activeClassName='active' className="text-light" to="home">
+              <Link className="text-light" to="home">
                 Home
               </Link>
             </NavLink>
           </NavItem>
           <NavItem>
             <NavLink>
-              <Link activeClassName='active' className="text-light" to="todo">
+              <Link className="text-light" to="todo">
                 my ToDos
               </Link>
             </NavLink>
           </NavItem>
           <NavItem>
             <NavLink>
-              <Link activeClassName='active' className="text-light" to="profile">
+              <Link className="text-light" to="profile">
                 my profile
               </Link>
             </NavLink>

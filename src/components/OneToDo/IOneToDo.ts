@@ -1,5 +1,3 @@
-import { ITodos } from './../../models/ITodos';
-
 export interface IOneToDo {
   completed: boolean; 
   userId: number; 
