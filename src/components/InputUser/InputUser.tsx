@@ -26,6 +26,11 @@ const InputUser: FC = () => {
       showAlert("Max value = 10");
       return;
     }
+
+    if (Number(event.target.value) < 1) {
+      showAlert("Values must > 0");
+      return;
+    }
     
     setCountUser(event.target.value);
   }

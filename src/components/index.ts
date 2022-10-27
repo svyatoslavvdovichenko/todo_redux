@@ -9,7 +9,7 @@ import OneToDo from "components/OneToDo/OneToDo";
 import AddNewToDo from "components/AddNewToDo/AddNewToDo";
 import AllTodos from "components/AllTodos/AllTodos";
 import InputUser from 'components/InputUser/InputUser';
-import UsersCard from './UsersCard/UsersCard';
+import UsersCard from 'components/UsersCard/UsersCard';
 
 export {
   Footer,
