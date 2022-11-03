@@ -1,8 +1,9 @@
 import { useActions } from "hooks";
 import { FC, useState } from "react";
-import { Button, Input, ListGroupItem} from "reactstrap";
+import { Button, Container, Input, ListGroupItem} from "reactstrap";
 import { AlertToDo } from "components";
 import { IOneToDo } from "./IOneToDo";
+import { checkInputs } from "helpers/checkInput";
 
 const OneToDo: FC<IOneToDo> = ({ userId, id, title, completed }) => {
   const [editId, setEditId] = useState<number | null>(null);
@@ -13,19 +14,10 @@ const OneToDo: FC<IOneToDo> = ({ userId, id, title, completed }) => {
 
   const editOneTodo = (): void => {
     if (newToDoText.trim() === "") {
-      showAlert("Text must not empty")
       return;
     }
     editToDo({ id, title: newToDoText });
     setEditId(null);
-  }
-
-  const showAlert = (alertMessage: string) => {  
-    setAlert({ alert: alertMessage, isVisibleAlert: true })
-  
-    setTimeout(() => {
-      setAlert({ alert: "", isVisibleAlert: false })
-    }, 3000);
   }
 
   const editedTextToDo = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -46,6 +38,7 @@ const OneToDo: FC<IOneToDo> = ({ userId, id, title, completed }) => {
 
   const cancelEdit = (): void => {
     setEditId(null);
+    setNewToDoText(title);
   }
 
   const deleteToDo = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
@@ -58,28 +51,32 @@ const OneToDo: FC<IOneToDo> = ({ userId, id, title, completed }) => {
       {editId ? (
         <>
           <ListGroupItem 
-            className="d-flex justify-content-between align-items-center"
+            className="d-flex w-100"
             id="DisabledAutoHide"
           >
-            <Input 
-              type="text"
-              value={newToDoText}
-              onChange={editedTextToDo}
-            />
-  
-            <Button 
-              color="success"
-              onClick={editOneTodo}
-            >
-              Save
-            </Button>
-  
-            <Button 
-              color="danger"
-              onClick={cancelEdit}
+            <Container className="d-flex flex-nowrap justify-content-between p-0">
+              <Input 
+                invalid={checkInputs(newToDoText)}
+                type="text"
+                value={newToDoText}
+                onChange={editedTextToDo}
+                className="w-65"
+              />
+              <Button 
+                color="success"
+                onClick={editOneTodo}
+                className="w-14"
               >
-              Cancel
-            </Button>
+                Save
+              </Button>
+              <Button 
+                color="danger"
+                onClick={cancelEdit}
+                className="w-17"
+              >
+                Cancel
+              </Button>
+            </Container>
           </ListGroupItem>
           <AlertToDo />
         </>
@@ -94,8 +91,7 @@ const OneToDo: FC<IOneToDo> = ({ userId, id, title, completed }) => {
             type="checkbox"
             checked={completed}
           />
-            {completed? 
-              (
+            {completed ? (
                 <s>{title}</s>
               ) : (
                 <span> 

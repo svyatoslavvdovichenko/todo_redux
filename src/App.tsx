@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import { 
@@ -18,12 +18,16 @@ const App: FC = () => (
       <Route exact path="/home">
         <Home />
       </Route>
+
       <Route exact path="/todo">
         <ToDoMain />
       </Route>
+
       <Route exact path="/profile">
         <Profile />
       </Route>
+      
+      <Redirect from="*" to="home" />
     </Switch>
     <Footer />
   </>

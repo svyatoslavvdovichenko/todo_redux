@@ -21,7 +21,7 @@ const AddNewToDo: FC = () => {
     setToDoText(event.target.value);
   }
 
-  const addOneTodo = (event:React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
+  const addOneTodo = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
     if (toDoText.trim() === "") {
       showAlert("Text must not empty");
@@ -42,7 +42,7 @@ const AddNewToDo: FC = () => {
 
   return (
     <Container className="mt-2">
-      <Form>
+      <Form onSubmit={addOneTodo}>
         <FormGroup>
           <Label for="todoAdd">
             ToDos
@@ -64,7 +64,7 @@ const AddNewToDo: FC = () => {
               color="dark"
               size="sm"
               className="pl-1"
-              onClick={addOneTodo}
+              type="submit"
             >
               Add new todo
             </Button>
@@ -73,6 +73,7 @@ const AddNewToDo: FC = () => {
           </Container>
         </FormGroup>
       </Form>
+
       <AlertToDo />
     </Container>
   );
