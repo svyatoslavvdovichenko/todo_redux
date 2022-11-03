@@ -1,6 +1,7 @@
 import { setAlert } from "./alertActions"
 import { setVisibilityFilter } from "./filterActions"
 import { checkToDos, createToDo, deleteToDos, editToDo } from "./toDoActions"
+import { fetchUser, setUser } from "./userActions"
 
 export default {
   setAlert,
@@ -8,5 +9,7 @@ export default {
   deleteToDos,
   createToDo,
   editToDo,
-  setVisibilityFilter
+  setVisibilityFilter,
+  fetchUser,
+  setUser
 }

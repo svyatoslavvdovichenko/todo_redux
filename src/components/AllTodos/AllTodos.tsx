@@ -8,6 +8,7 @@ const AllTodos: FC = () => {
   const todos = useTypedSelector(state => state.toDosReducer.todos);
   const filter = useTypedSelector(state => state.visibilityReducer.filter);
 
+
   const getVisibleTodos = (todos: ITodos[], filter: string): ITodos[] => {
     switch (filter) {
       case "showAll":

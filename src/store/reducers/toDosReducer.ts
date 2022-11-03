@@ -6,9 +6,6 @@ const initialState: toDosState = {
 
 export const toDosReducer = (state = initialState, action: toDoAction): toDosState => {
   switch (action.type) {
-    case ToDosActionTypes.SET_TODOS:
-      localStorage.setItem("todos", JSON.stringify(action.payload))
-      return { todos: action.payload };
     case ToDosActionTypes.CHECK_TODOS:
       const checkedToDo = state.todos.map(todo => {
         if (todo.id === action.payload) {
